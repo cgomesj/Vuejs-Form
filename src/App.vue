@@ -18,17 +18,7 @@
           <!-- Edit the Example from above and create a custom "Full Name" Control -->
           <!-- which still holds the First Name and Last Name Input Field -->
 
-          <component :is="'get-full-name'" v-model="user.fullName"></component>
-
-          <div class="form-group">
-            <label for="inputfirstName">First Name</label>
-            <input type="text" class="form-control" id="inputfirstName" v-model="user.firstName" />
-          </div>
-
-          <div class="form-group">
-            <label for="inputlastName">Last Name</label>
-            <input type="text" class="form-control" id="inputlastName" v-model="user.lastName" />
-          </div>
+          <component :is="'app-full-name'" v-model="user.fullName"></component>
 
           <div class="form-group">
             <label for="inputMail">Mail</label>
@@ -41,21 +31,58 @@
             <input type="password" class="form-control" id="inputPassword" v-model="user.password" />
           </div>
 
-          <div class="form-group form-check">
+          <div class="form-check">
             <input
               type="checkbox"
               class="form-check-input"
-              id="inputStoreData"
+              id="storeData"
+              value="storeData"
               v-model="user.storeData"
             />
-            <label for="inputStoreData" class="form-check-label">Store Data?</label>
+            <label for="storeData" class="form-check-label">Store Data?</label>
           </div>
 
-          <button class="btn btn-primary" @click.prevent="isSubmitted = true">Submit</button>
+          <div class="w-100 mt-4 mb-1 text-secondary">Just some radio buttons</div>
+          <div class="form-check form-check-inline">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="radiotests"
+              id="radio1"
+              value="Yes"
+              v-model="user.RadioTest"
+            />
+            <label class="form-check-label" for="radio1">Yes</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="radiotests"
+              id="radio2"
+              value="No"
+              v-model="user.RadioTest"
+            />
+            <label class="form-check-label" for="radio2">No</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input
+              type="radio"
+              class="form-check-input"
+              name="radiotests"
+              id="radio3"
+              value="Later"
+              v-model="user.RadioTest"
+            />
+            <label class="form-check-label" for="radio3">Maybe later</label>
+          </div>
+          <div class="w-100"></div>
+          <button class="btn btn-primary mt-4" @click.prevent="isSubmitted = true">Submit</button>
         </div>
       </div>
     </form>
-    <hr />
     <div v-if="isSubmitted" class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <div class="card">
@@ -64,11 +91,16 @@
           </div>
           <div class="card-body">
             <p>Full Name: {{ user.fullName }}</p>
-            <p>First Name: {{ user.firstName }}</p>
-            <p>Last Name: {{ user.lastName }}</p>
             <p>Mail: {{ user.mail }}</p>
             <p>Password: {{ user.password }}</p>
-            <p>Store in Database? {{ user.storeData }}</p>
+            <p>Store in Database?</p>
+            <ul>
+              <li v-for="(sdata, index) in user.storeData" :key="index">{{ sdata }}</li>
+            </ul>
+            <p>
+              Radio Chosen:
+              {{ user.RadioTest }}
+            </p>
           </div>
         </div>
       </div>
@@ -77,21 +109,22 @@
 </template>
 
 <script>
-import GetFullName from "./components/GetFullName.vue";
+import FullName from "./components/FullName.vue";
 
 export default {
   components: {
-    "get-full-name": GetFullName
+    "app-full-name": FullName
   },
   data() {
     return {
       user: {
-        fullName: "Goffrey Smiths",
+        fullName: "Fred Mirrors",
         firstName: "Goffrey",
         lastName: "Smiths",
         mail: "goff.smiths@mail.com",
         password: "goffspass",
-        storeData: false
+        storeData: ["storeData"],
+        RadioTest: "Yes"
       },
       isSubmitted: false
     };
