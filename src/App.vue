@@ -3,21 +3,6 @@
     <form v-if="!isSubmitted">
       <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-12">
-          <!-- Exercise 1 -->
-          <!-- Create a Signup Form where you retrieve the following Information -->
-          <!-- Full Name (First Name + Last Name) -->
-          <!-- Mail -->
-          <!-- Password -->
-          <!-- Store Data? Yes/No -->
-
-          <!-- Exercise 2 -->
-          <!-- Only display the Form if it has NOT been submitted -->
-          <!-- Display the Data Summary ONCE the Form HAS been submitted -->
-
-          <!-- Exercise 3 -->
-          <!-- Edit the Example from above and create a custom "Full Name" Control -->
-          <!-- which still holds the First Name and Last Name Input Field -->
-
           <component :is="'app-full-name'" v-model="user.fullName"></component>
 
           <div class="form-group">
@@ -89,6 +74,7 @@
           <div class="card-header">
             <h4>Your Data</h4>
           </div>
+
           <div class="card-body">
             <p>Full Name: {{ user.fullName }}</p>
             <p>Mail: {{ user.mail }}</p>
@@ -115,6 +101,7 @@ export default {
   components: {
     "app-full-name": FullName
   },
+
   data() {
     return {
       user: {
