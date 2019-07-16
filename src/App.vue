@@ -121,8 +121,8 @@ export default {
         fullName: "Fred Mirrors",
         firstName: "Goffrey",
         lastName: "Smiths",
-        mail: "goff.smiths@mail.com",
-        password: "goffspass",
+        mail: "fred.mirrors@mail.com",
+        password: "fred123mi45rror",
         storeData: ["storeData"],
         RadioTest: "Yes"
       },
